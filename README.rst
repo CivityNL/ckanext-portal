@@ -28,9 +28,7 @@
 ckanext-portal
 =============
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
+With this plugin, you extend the organization, and dataset entities to comply with the portal metadata structure. 
 
 
 ------------
@@ -70,7 +68,7 @@ To install ckanext-portal:
 ---------------
 Config settings
 ---------------
-With this plugin, you extend the organization, and dataset entities to comply with the portal metadata structure. Adding and enabling the portal schema will modify the forms used to update and create each entity, indicated by the respective type property at the root level. Such as organization_type and dataset_type.
+Adding and enabling the portal schema will modify the forms used to update and create each entity, indicated by the respective type property at the root level. Such as organization_type and dataset_type.
 
 Enable the plugin by including it in the configuration options::
 
