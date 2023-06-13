@@ -37,8 +37,7 @@ ckanext-portal
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+This plugin includes schemas and thus the ckanext-scheming is a requirement for it to function properly.
 
 
 ------------
@@ -71,15 +70,44 @@ To install ckanext-portal:
 ---------------
 Config settings
 ---------------
+With this plugin, you extend the organization, and dataset entities to comply with the portal metadata structure. Adding and enabling the portal schema will modify the forms used to update and create each entity, indicated by the respective type property at the root level. Such as organization_type and dataset_type.
 
-None at present
+Enable the plugin by including it in the configuration options::
 
-.. Document any optional config settings here. For example::
+   ckan.plugins = ... portal ...
 
-.. # The minimum number of hours to wait before re-checking a resource
-   # (optional, default: 24).
-   ckanext.portal.some_setting = some_default_value
+Set the schemas you want to use in the configuration options::
 
+   #   For dataset portal schema:
+   scheming.dataset_schemas = ckanext.portal:scheming/schemas/portal.json
+
+   #   For organization portal schema:
+   scheming.organization_schemas = ckanext.portal:scheming/schemas/organization/portal_organization.json
+
+Portal dataset schema keys
+--------------------------
+::
+
+   'carousel_active': choose to display a dataset in the portal's carousel widget
+   'carousel_order':  set the order in which you want the dataset to be displayed in the carousel widget
+   'carousel_image':  set an image URL to be displayed as a background image in your carousel activated dataset
+   'carousel_text':   set a description to be displayed in your carousel activated dataset
+
+Portal organization schema keys
+-------------------------------
+::
+
+   'portal_intro_text': set an intro text to be displayed in your portal's homepage screen
+
+-------------
+API Endpoints
+-------------
+scheming_package_show
+---------------------
+An extended version of package_show, returning information in a format that is fitted to what the Dataplatform Portal needs
+Example endpoint::
+
+   `http://localhost:5000/api/3/action/scheming_package_show`
 
 ----------------------
 Developer installation
@@ -106,40 +134,3 @@ To run the tests and produce a coverage report, first make sure you have
 coverage installed in your virtualenv (``pip install coverage``) then run::
 
     pytest --ckan-ini=test.ini --cov=ckanext.portal
-
-
-----------------------------------------
-Releasing a new version of ckanext-portal
-----------------------------------------
-
-ckanext-portal should be available on PyPI as https://pypi.org/project/ckanext-portal.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Make sure you have the latest version of necessary packages::
-
-    pip install --upgrade setuptools wheel twine
-
-3. Create a source and binary distributions of the new version::
-
-       python setup.py sdist bdist_wheel && twine check dist/*
-
-   Fix any errors you get.
-
-4. Upload the source distribution to PyPI::
-
-       twine upload dist/*
-
-5. Commit any outstanding changes::
-
-       git commit -a
-
-6. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
