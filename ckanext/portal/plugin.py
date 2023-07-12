@@ -2,12 +2,14 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckanext.portal.logic.auth.get as auth_get
 import ckanext.portal.logic.action.get as action_get
+import validators
 
 
 class PortalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IValidators)
 
     # IConfigurer
     def update_config(self, config_):
@@ -33,4 +35,10 @@ class PortalPlugin(plugins.SingletonPlugin):
     def get_actions(self):
         return {
             'scheming_package_show': action_get.scheming_package_show
+        }
+
+    # IValidator
+    def get_validators(self):
+        return {
+            'url_checker': validators.url_checker
         }
