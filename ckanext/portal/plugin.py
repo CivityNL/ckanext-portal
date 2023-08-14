@@ -36,6 +36,6 @@ class PortalPlugin(plugins.SingletonPlugin):
     #         'scheming_package_show': action_get.scheming_package_show
     #     }
 
-    def after_map(self, map):
-        controllers.redirect_to_portal(map)
-        return map
+    # def after_map(self, map):
+    #     controllers.redirect_to_portal(map)
+    #     return map
