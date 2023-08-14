@@ -7,7 +7,7 @@ import controllers
 class PortalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
-    plugins.implements(plugins.IActions)
+    # plugins.implements(plugins.IActions)
     plugins.implements(plugins.IRoutes, inherit=True)
 
     # IConfigurer
