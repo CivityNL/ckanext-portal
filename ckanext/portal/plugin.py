@@ -30,11 +30,11 @@ class PortalPlugin(plugins.SingletonPlugin):
         return {
             'config_option_show': auth_get.config_option_show
         }
-
-    def get_actions(self):
-        return {
-            'scheming_package_show': action_get.scheming_package_show
-        }
+    #
+    # def get_actions(self):
+    #     return {
+    #         'scheming_package_show': action_get.scheming_package_show
+    #     }
 
     def after_map(self, map):
         controllers.redirect_to_portal(map)
