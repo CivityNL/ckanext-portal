@@ -2,12 +2,13 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckanext.portal.logic.auth.get as auth_get
 import ckanext.portal.logic.action.get as action_get
-
+import controllers
 
 class PortalPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IActions)
+    plugins.implements(toolkit.IRoutes, inherit=True)
 
     # IConfigurer
     def update_config(self, config_):
@@ -34,3 +35,7 @@ class PortalPlugin(plugins.SingletonPlugin):
         return {
             'scheming_package_show': action_get.scheming_package_show
         }
+
+    def after_map(self, map):
+        controllers.redirect_to_portal(map)
+        return map
