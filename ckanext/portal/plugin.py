@@ -38,6 +38,6 @@ class PortalPlugin(plugins.SingletonPlugin):
 
     def after_map(self, map):
         map.connect('portal', '/portal',
-            controller='ckanext.stats.controller:PortalController',
+            controller='ckanext.portal.controller:PortalController',
             action='portal_index')
         return map
