@@ -28,7 +28,7 @@
 ckanext-portal
 =============
 
-With this plugin, you extend the organization, and dataset entities to comply with the portal metadata structure. 
+With this plugin, you extend the organization, and dataset entities to comply with the portal metadata structure.
 
 
 ------------
